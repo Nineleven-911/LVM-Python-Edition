@@ -23,6 +23,7 @@ def getOptionsParser() -> OptionsParser:
 
 def main(args: list[str]) -> void:
     options = getOptionsParser().parse(args)
+    virtual_machine = VirtualMachine()
 
 
 if __name__ == '__main__':

@@ -342,6 +342,7 @@ class ExecutionUnit:
         self.registers[ByteCode.SP_REGISTER] = stack_start
         self.registers[ByteCode.PC_REGISTER] = entrypoint
 
+    @incompleted
     def execute(self):
         running = True
         while running:

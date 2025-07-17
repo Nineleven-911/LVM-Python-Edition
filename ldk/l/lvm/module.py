@@ -1,4 +1,6 @@
 from hairinne.utils.Incomplete import incompleted
+from hairinne.utils.byteAndLong import toBytearray
+from ldk.l.lvm.vm import VirtualMachine
 
 
 class Module:
@@ -18,6 +20,7 @@ class Module:
 
     @incompleted
     def raw(self):
-        pass
-
-Module(0,0,0,0,0).raw()
+        byte_buffer = bytearray()
+        byte_buffer.extend([ord(i) for i in "lvme"])
+        byte_buffer.extend(toBytearray(VirtualMachine.LVM_VERSION))
+        byte_buffer.extend(toBytearray(len(self.text)))
