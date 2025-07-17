@@ -1,3 +1,6 @@
+from hairinne.utils.Incomplete import incompleted
+
+
 class ByteCode:
     # 标志位常量
     ZERO_MARK = 0b01
@@ -308,7 +311,9 @@ class FileHandle:
     FH_READ = 1
     FH_WRITE = 2
     FH_PREOPEN = 1
+    @incompleted
     def __init__(self, path: str, flags: int, mode: int):
+        pass
 
 
 class Memory:

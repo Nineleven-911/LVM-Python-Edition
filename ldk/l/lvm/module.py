@@ -1,4 +1,4 @@
-import sys
+from hairinne.utils.Incomplete import incompleted
 
 
 class Module:
@@ -16,5 +16,8 @@ class Module:
         self.bssSectionLength = bssSectionLength
         self.entrypoint = entrypoint
 
+    @incompleted
     def raw(self):
-        
+        pass
+
+Module(0,0,0,0,0).raw()
