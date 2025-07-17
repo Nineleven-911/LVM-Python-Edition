@@ -311,6 +311,7 @@ class FileHandle:
     FH_READ = 1
     FH_WRITE = 2
     FH_PREOPEN = 1
+
     @incompleted
     def __init__(self, path: str, flags: int, mode: int):
         pass
@@ -325,7 +326,7 @@ class ThreadHandle:
 
 
 class VirtualMachine:
-    LVM_VERSION = 0 # Range: long range ( 2^63-1=9223372036854775807 )
+    LVM_VERSION = 0  # Range: long range ( 2^63-1=9223372036854775807 )
 
 
 class ExecutionUnit:
@@ -337,21 +338,15 @@ class ExecutionUnit:
     def init(self, threadID: int, stack_start: int, entrypoint: int):
         self.threadID = threadID
         self.registers = [0 for _ in range(40)]
-        self.setRegister(ByteCode.BP_REGISTER, stack_start)
-        self.setRegister(ByteCode.SP_REGISTER, stack_start)
-        self.setRegister(ByteCode.PC_REGISTER, entrypoint)
+        self.registers[ByteCode.BP_REGISTER] = stack_start
+        self.registers[ByteCode.SP_REGISTER] = stack_start
+        self.registers[ByteCode.PC_REGISTER] = entrypoint
 
     def execute(self):
         running = True
         while running:
-            pc = self.getRegister(ByteCode.PC_REGISTER)
+            pc = self.registers[ByteCode.PC_REGISTER]
             # TODO
 
     def run(self):
         self.execute()
-
-    def getRegister(self, register: int) -> int:
-        return self.registers[register]
-
-    def setRegister(self, register: int, value: int):
-        self.registers[register] = value
